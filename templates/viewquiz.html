@@ -1,0 +1,111 @@
+{% extends 'layout.html '%} {% block content %} {% include 'searchbar.html' with
+context%}
+<hr />
+<div class="subject-list">
+  <h1 class="text-primary text-center mb-4">Quiz : {{quiz.chapter.name}}</h1><br>
+  <div class="chapters">
+    <div class="card quiz-card" >
+      <div class="card-body">
+        <h4 class="card-title text-secondary">Quiz</h4><br>
+        <p class="form-control bg-light">
+          <b>Subject:</b><span class="form-label"> {{quiz.chapter.subject.name}}
+        </p></span>
+        <p class="form-control bg-light">
+          <b>Number of Questions:</b> {{quiz.questions|length}}
+        </p>
+        <p class="form-control bg-light"><b>Date:</b> {{quiz.quiz_date}}</p>
+        <p class="form-control bg-light"><b>Duration:</b> {{quiz.quiz_duration}}</p>
+        <div class="text-center mt-4">
+          <a
+            href="{{ url_for('gotochapter', id=quiz.chapter.id) }}"
+            class="btn btn-danger"
+            ><i class="fas fa-trash"></i>Close</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %} {% block style %}
+<style>
+  /* General Container Styling */
+  .subject-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    background-color: #f8f9fa;
+    border-radius: 12px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 15px;
+    margin-top: 20px;
+    width: 90%;
+    max-width: 900px; /* Wider layout */
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Quiz Card Styling */
+  .quiz-card {
+    width: 100%;
+    max-width: 700px; /* Increased card width */
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 5px 15px;
+    padding: 25px;
+    margin-top: 20px;
+  }
+
+  .card-body {
+    padding: 20px;
+  }
+
+  /* Title Styling */
+  .card-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #6c757d;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  h1.text-primary {
+    font-size: 36px;
+    font-weight: bold;
+    color: #007bff;
+    margin-bottom: 20px;
+  }
+
+  /* Form Control Styling */
+  .form-control {
+    border-radius: 8px;
+    border: none;
+    font-size: 17px;
+    color: #495057;
+    background-color: #f8f9fa;
+    padding: 12px;
+    box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  .form-control b {
+    color: #343a40;
+  }
+
+  /* Button Styling */
+  .btn-danger {
+    background-color: #dc3545;
+    color: white;
+    font-size: 18px;
+    padding: 12px 25px;
+    border-radius: 8px;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .btn-danger:hover {
+    background-color: #c82333;
+    transform: scale(1.07);
+    color: white;
+  }
+
+</style>
+{% endblock %}

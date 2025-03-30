@@ -1,0 +1,57 @@
+<div class="container-fluid search-bar" style="margin-top: 20px">
+  <div class="row">
+    <div class="col-md-12">
+      <form class="form-inline" action="" method="get">
+        <div class="input-group">
+          <select name="parameter" id="parameter" class="parameter form-select">
+            <option value="subject">Subject</option>
+            <option value="chapter">Chapter</option>
+          </select>
+          <input
+            type="text"
+            class="form-control w-50"
+            name="query"
+            placeholder="Search"
+          />
+          <a href="{{ url_for('index') }}" class="btn btn-danger"
+            ><i class="fas fa-trash"></i>Close</a
+          >
+          <button type="submit" class="btn btn-primary">
+            <i class="fas fa-search"></i>Search
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<style>
+  .search-bar {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f8f9fa; /* Light grey background */
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px; /* Subtle shadow */
+  }
+
+  .input-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; /* Space between elements */
+  }
+
+  .form-control {
+    border-radius: 5px;
+    border: 1px solid #ced4da; /* Light border */
+  }
+
+  .btn-danger {
+    background-color: #dc3545; /* Red button */
+    color: white;
+  }
+
+  .btn-primary {
+    background-color: #007bff; /* Blue button */
+    color: white;
+  }
+</style>

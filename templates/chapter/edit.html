@@ -1,0 +1,75 @@
+{% extends 'layout.html' %} {% block title %}Edit Chapter{% endblock %} {% block
+content %}
+<div class="edit-subject-container">
+  <h1 class="text-primary text-center mb-4">Edit Chapter</h1>
+  <form action="" method="post" class="form">
+    <div class="form-group">
+      <label for="name" class="form-label">Subject Name: </label>
+      <input type="text" class="form-control" id="name" name="name" />
+    </div>
+    <div class="form-group">
+      <label for="description" class="form-label">Description: </label>
+      <textarea
+        class="form-control"
+        id="description"
+        name="description"
+      ></textarea>
+    </div>
+    <br />
+    <div class="form-group">
+      <button type="submit" class="btn btn-success">
+        <i class="fas fa-save"></i> Update
+      </button>
+    </div>
+  </form>
+</div>
+{% endblock %} {% block style %}
+<style>
+  /* Center the Form */
+  .edit-subject-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  }
+
+  /* Heading */
+  .text-primary {
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  /* Form Styling */
+  .form-group {
+    margin-bottom: 15px;
+  }
+
+  .form-label {
+    font-weight: bold;
+    color: #333;
+  }
+
+  .form-control {
+    border-radius: 8px;
+    border: 1px solid #ced4da;
+    padding: 10px;
+    font-size: 16px;
+  }
+
+  /* Button Styling */
+  .btn-success {
+    background-color: #28a745;
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 8px;
+    transition: 0.3s ease;
+  }
+
+  .btn-success:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+  }
+</style>
+{% endblock %}

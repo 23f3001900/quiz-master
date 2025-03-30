@@ -1,0 +1,78 @@
+{% extends 'layout.html' %} {% block title %}Quiz Page{% endblock %} {% block
+content %}
+<div class="heading">
+  <h2 class="display-1">Quiz: {{ quiz.chapter.name }}</h2>
+  <!-- Change this to add_question -->
+  <a
+    href="{{ url_for('add_question', quiz_id=quiz.id) }}"
+    class="btn btn-success"
+  >
+    <i class="fas fa-plus"></i> Add Question
+  </a>
+</div>
+<br />
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Question</th>
+        <th scope="col">Options</th>
+        <th scope="col">Answer</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for question in quiz.questions %}
+      <tr>
+        <!-- Serial Number -->
+        <th scope="row">{{ loop.index }}</th>
+        <!-- Question Statement -->
+        <td>{{ question.statement }}</td>
+        <!-- Options -->
+        <td>
+          <ol>
+            <li>{{ question.option1 }}</li>
+            <li>{{ question.option2 }}</li>
+            <li>{{ question.option3 }}</li>
+            <li>{{ question.option4 }}</li>
+          </ol>
+        </td>
+        <td>{{ question.answer }}</td>
+        <!-- Actions -->
+        <!-- Change this to edit_question and delete_question -->
+        <td>
+          <a
+            href="{{ url_for('edit_question', id=question.id) }}"
+            class="btn btn-warning btn-sm mt-2"
+          >
+            <i class="fas fa-edit"></i> Edit
+          </a>
+          <a
+            href="{{ url_for('delete_question', id=question.id) }}"
+            class="btn btn-danger btn-sm mt-2"
+          >
+            <i class="fas fa-trash-alt"></i> Delete
+          </a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %} {% block style %}<style>
+  .heading {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .table-responsive {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+</style>
+{% endblock %}

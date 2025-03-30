@@ -1,0 +1,116 @@
+{% extends 'layout.html '%} {% block title %} Profile Page {% endblock %} {%
+block content %}
+<div class="profile-container">
+  <h1 class="display-4 text-center">Hello, {{user.fullname}}</h1>
+
+  <form actions="" method="post" class="profile-form">
+    <div class="mb-3">
+      <label for="username" class="form-label">Email : </label>
+      <input
+        type="Email"
+        class="form-control"
+        id="username"
+        name="Email"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Current Password : </label>
+      <input
+        type="password"
+        class="form-control"
+        id="password"
+        name="CPassword"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">New Password : </label>
+      <input
+        type="password"
+        class="form-control"
+        id="password"
+        name="NPassword"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="name" class="form-label">Change Name: </label>
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        name="Name"
+        value="{{user.fullname}}"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="dob" class="form-label">Change DOB: </label>
+      <input
+        type="date"
+        class="form-control"
+        id="dob"
+        name="DOB"
+        value="{{user.dob}}"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="qualification" class="form-label"
+        >Change Qualification:
+      </label>
+      <input
+        type="text"
+        class="form-control"
+        id="qualification"
+        name="Qualification"
+        value="{{user.qualification}}"
+      />
+    </div>
+    <br />
+    <div class="text-center">
+      <button type="submit" class="btn btn-outline-primary">
+        <i class="fas fa-save"></i> Update
+      </button>
+    </div>
+  </form>
+  <br />
+
+  {% endblock %} {% block style %}
+  <style>
+    /* Profile Page Styles */
+    .profile-container {
+      max-width: 600px;
+      background: #ffffff;
+      margin: 40px auto;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Input Fields */
+    .profile-form .form-control {
+      border-radius: 8px;
+      padding: 10px;
+      font-size: 16px;
+      transition: all 0.3s ease;
+    }
+
+    .profile-form .form-control:focus {
+      border-color: #007bff;
+      box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.5);
+    }
+
+    /* Button */
+    .profile-form .btn {
+      padding: 10px 20px;
+      font-size: 18px;
+      border-radius: 8px;
+      transition: 0.3s;
+    }
+
+    .profile-form .btn:hover {
+      background-color: #0056b3;
+    }
+  </style>
+  {% endblock %}
+</div>

@@ -1,0 +1,58 @@
+{% extends 'layout.html '%} {% block content %}
+<h1>Welcome to Quiz Master</h1>
+<h2>Register</h2>
+<form action="" method="post">
+  <div class="group">
+    <label for="name" class="form-label">Full Name: </label>
+    <input type="text" class="form-control" id="name" name="Name" required />
+  </div>
+  <div class="group">
+    <label for="username" class="form-label">Email : </label>
+    <input
+      type="Email"
+      class="form-control"
+      id="username"
+      name="Email"
+      required
+    />
+  </div>
+  <div class="group">
+    <label for="dob" class="form-label">DOB: </label>
+    <input type="date" class="form-control" id="dob" name="DOB" required />
+  </div>
+  <div class="group">
+    <label for="qualification" class="form-label">Qualification: </label>
+    <input
+      type="text"
+      class="form-control"
+      id="qualification"
+      name="Qualification"
+      required
+    />
+  </div>
+  <div class="group">
+    <label for="password" class="form-label">Password : </label>
+    <input
+      type="password"
+      class="form-control"
+      id="password"
+      name="Password"
+      required
+    />
+  </div>
+  <div class="group">
+    <label for="password" class="form-label">Confirm Password : </label>
+    <input
+      type="password"
+      class="form-control"
+      id="password"
+      name="CPassword"
+      required
+    />
+  </div>
+  <br />
+  <div class="col-12">
+    <button type="submit" class="btn btn-outline-primary">Register</button>
+  </div>
+</form>
+{% endblock %}

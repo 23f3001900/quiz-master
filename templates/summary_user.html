@@ -1,0 +1,115 @@
+{% extends 'layout.html' %} {% block title %}Quiz Attempts{% endblock %} {%
+block content %}
+<br />
+<h2 class="display-2 text-primary text-center mb-4">Summary:</h2>
+<h3 class="display-3 text-secondary text-center mb-4">Quiz Attempts:</h3>
+<div class="chart-container">
+  <canvas id="userChart"></canvas>
+</div>
+{% endblock %}{% block style %}
+<style>
+  /* General Styling */
+  body {
+    background-color: #f8f9fa; /* Light grey background for the page */
+  }
+
+  .chart-container {
+    width: 80%; /* Make it responsive to smaller screens */
+    max-width: 600px; /* Limit the chart size */
+    margin: auto; /* Center the chart */
+    padding: 20px;
+    background-color: #ffffff; /* White background for chart area */
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px; /* Subtle shadow for depth */
+  }
+
+  #userChart {
+    width: 100%;
+    height: auto; /* Responsive height */
+  }
+
+  h2.display-2 {
+    font-size: 36px;
+    color: #007bff; /* Blue for main heading */
+    font-weight: bold;
+  }
+
+  h3.display-3 {
+    font-size: 28px;
+    color: #6c757d; /* Muted grey for subheading */
+    font-weight: normal;
+  }
+</style>
+{% endblock %} {% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- Add a JSON script to embed Flask data safely -->
+<script id="chart-data" type="application/json">
+  {
+    "labels": {{ subjects | tojson | safe }},
+    "data": {{ attempts | tojson | safe }}
+  }
+</script>
+
+<script>
+  console.log("User-side chart script running");
+
+  // Fetch the JSON data from the embedded script tag
+  const chartData = JSON.parse(
+    document.getElementById("chart-data").textContent
+  );
+
+  const labels = chartData.labels; // Extract labels from JSON
+  const data = chartData.data; // Extract data from JSON
+
+  console.log("Labels:", labels);
+  console.log("Data:", data);
+
+  const ctx = document.getElementById("userChart");
+
+  new Chart(ctx, {
+    type: "bar", // Bar chart for quiz attempts
+    data: {
+      labels: labels, // Subject names from Flask
+      datasets: [
+        {
+          label: "Number of Quizzes Attempted",
+          data: data, // Number of attempts from Flask
+          backgroundColor: [
+            "rgba(255, 99, 132, 1)",
+            "rgba(54, 162, 235, 1)",
+            "rgba(255, 206, 86, 1)",
+            "rgba(75, 192, 192, 1)",
+            "rgba(153, 102, 255, 1)",
+            "rgba(255, 159, 64, 1)",
+          ],
+          borderColor: [
+            "rgba(255,99,132,1)",
+            "rgba(54,162,235,1)",
+            "rgba(255,206,86,1)",
+            "rgba(75,192,192,1)",
+            "rgba(153,102,255,1)",
+            "rgba(255,159,64,1)",
+          ],
+          borderWidth: 1,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false, // Makes the chart responsive
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: {
+            stepSize: 1, // Ensure increments of 1
+            callback: function (value) {
+              return Number.isInteger(value) ? value : null; // Display only integers
+            },
+          },
+        },
+      },
+    },
+  });
+</script>
+{% endblock %}

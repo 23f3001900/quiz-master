@@ -1,0 +1,129 @@
+{% extends 'layout.html '%} {% block content %} {% include 'searchbar.html' with
+context%}
+<hr />
+<div class="subject-list">
+  {% for subject in subjects %}
+  <div class="subject-card">
+    <h2 class="subject-title">{{ subject.name }}</h2>
+    <h6 class="subject-credits">Credits: {{subject.credits}}</h6>
+    <div class="chapters">
+      {% for chapter in subject.chapters %}
+      <div class="chapter-card">
+        <div class="card-body">
+          <h5 class="card-title">{{chapter.name}}</h5>
+          <p class="card-description">{{chapter.description}}</p>
+          <p class="card-quizzes">
+            It contains {{chapter.quizzes|length}} Quizzes.
+          </p>
+          <a
+            href="{{ url_for('gotochapter', id=chapter.id) }}"
+            class="btn btn-success"
+            ><i class="fas fa-search"></i> Go to Chapter</a
+          >
+        </div>
+      </div>
+
+      {% endfor %}
+    </div>
+  </div>
+  {%endfor %}
+</div>
+{% endblock %} {% block style %}
+<style>
+  /* General Styling */
+  body {
+    background-color: #f8f9fa; /* Light grey background */
+    font-family: "Poppins", sans-serif;
+  }
+
+  hr {
+    border: 1px solid #ddd;
+    margin: 20px 0;
+  }
+
+  /* Subject List Styling */
+  .subject-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    padding: 20px;
+    margin-top: 20px;
+  }
+
+  .subject-card {
+    background-color: #ffffff; /* White card background */
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 800px;
+    text-align: center;
+    border-left: 5px solid #38ce3c;
+    transition: transform 0.3s ease-in-out; /* Vibrant green accent */
+  }
+
+  .subject-card:hover {
+    transform: scale(1.02);
+  }
+  .subject-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #181824; /* Sleek black for titles */
+    margin-bottom: 10px;
+  }
+
+  .subject-credits {
+    font-size: 16px;
+    color: #6c757d; /* Muted grey for credits */
+    margin-bottom: 20px;
+  }
+
+  /* Chapters Styling */
+  .chapters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px; /* Space between cards */
+  }
+
+  .chapter-card {
+    background-color: #fdfdfd; /* Slightly off-white for contrast */
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 6px 16px;
+    width: calc(50% - 20px); /* Two cards per row */
+    max-width: 300px;
+    padding: 20px;
+    text-align: center;
+    border-left: 5px solid #ff4d6b;
+    transition: transform 0.3s ease-in-out;
+  }
+  .chapter-card:hover {
+    transform: scale(1.05);
+  }
+  .card-title {
+    font-size: 18 px;
+    font-weight: bold;
+    color: #7a288a;
+    padding-bottom: 5 px;
+  }
+  .card-description,
+  .card-quizzes {
+    font-size: 14px;
+    color: #6c757d; /* Muted grey for quiz counts */
+  }
+  .btn-success {
+    background-color: #38ce3c;
+    font-size: 14px;
+    padding: 8px 14px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+  }
+
+  .btn-success:hover {
+    background-color: #2ba82e;
+    transform: translateY(-2px);
+  }
+</style>
+{% endblock %}

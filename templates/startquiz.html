@@ -1,0 +1,84 @@
+{% extends 'layout.html' %} {% block title %}Take Quiz{% endblock %} {% block
+content %}
+<h1 class="text-center text-primary mb-4">Quiz: {{ quiz.chapter.name }}</h1>
+<br />
+<form method="POST" action="{{ url_for('startquiz', quiz_id=quiz.id) }}">
+  {% for question in quiz.questions %}
+  <div class="mb-4 question-card">
+    <label class="form-label"
+      ><strong>Q{{ loop.index }}:</strong> {{ question.statement }}</label
+    >
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="radio"
+        name="q{{ question.id }}"
+        value="{{ question.option1 }}"
+        id="q{{ question.id }}_1"
+        required
+      />
+      <label class="form-check-label" for="q{{ question.id }}_1"
+        >{{ question.option1 }}</label
+      >
+    </div>
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="radio"
+        name="q{{ question.id }}"
+        value="{{ question.option2 }}"
+        id="q{{ question.id }}_2"
+        required
+      />
+      <label class="form-check-label" for="q{{ question.id }}_2"
+        >{{ question.option2 }}</label
+      >
+    </div>
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="radio"
+        name="q{{ question.id }}"
+        value="{{ question.option3 }}"
+        id="q{{ question.id }}_3"
+        required
+      />
+      <label class="form-check-label" for="q{{ question.id }}_3"
+        >{{ question.option3 }}</label
+      >
+    </div>
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="radio"
+        name="q{{ question.id }}"
+        value="{{ question.option4 }}"
+        id="q{{ question.id }}_4"
+        required
+      />
+      <label class="form-check-label" for="q{{ question.id }}_4"
+        >{{ question.option4 }}</label
+      >
+    </div>
+  </div>
+  {% endfor %}
+  <div class="form-group mt-4">
+    <button type="submit" class="btn btn-success">Submit</button>
+  </div>
+</form>
+{% endblock %} {% block style %}
+<style>
+  .question-card {
+    padding: 20px;
+    background-color: #f8f9fa; /* Light grey background */
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px; /* Subtle shadow */
+    margin-bottom: 20px;
+  }
+
+  .btn-success {
+    background-color: #28a745; /* Green button */
+    color: white;
+  }
+</style>
+{% endblock %}

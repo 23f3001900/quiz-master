@@ -1,0 +1,74 @@
+{% extends 'layout.html '%} {% block title %} Admin Page {% endblock %} {% block
+content %}{% include 'searchbar.html' with context%}<br />
+<div class="heading">
+  <h1 class="display-1">Admin Dashboard</h1>
+  <a href="{{ url_for('add_subject') }}" class="btn btn-success"
+    ><i class="fas fa-plus"></i> Add Subject</a
+  >
+</div>
+<br />
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Subject Name</th>
+        <th scope="col">No. of Chapters</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for subject in subjects %}
+      <tr>
+        <!-- Serial Number -->
+        <th scope="row">{{ loop.index }}</th>
+        <!-- Subject Name -->
+        <td>{{ subject.name }}</td>
+        <!-- Number of Chapters -->
+        <td>{{ subject.chapters | length }}</td>
+        <!-- Actions -->
+        <td>
+          <a
+            href="{{ url_for('show_subject', id=subject.id) }}"
+            class="btn btn-success btn-sm mt-2"
+            ><i class="fas fa-eye"></i> Show
+          </a>
+          <a
+            href="{{ url_for('edit_subject', id=subject.id) }}"
+            class="btn btn-warning btn-sm mt-2"
+            ><i class="fas fa-edit"></i> Edit
+          </a>
+
+          <a
+            href="{{ url_for('delete_subject', id=subject.id) }}"
+            class="btn btn-danger btn-sm mt-2"
+            ><i class="fas fa-trash-alt"></i> Delete
+          </a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %} {% block style %}
+<style>
+  .heading {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .table-responsive {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+</style>
+{% endblock %}

@@ -1,0 +1,74 @@
+{% extends 'layout.html '%} {% block content %} {% include 'searchbar.html' with
+context%}
+<hr />
+<h2 class="chapter-title">{{chapter.name }}</h2>
+<h6 class="chapter-description">{{chapter.description}}</h6>
+<div class="quizzes">
+  {% for quiz in chapter.quizzes %}
+  <div class="card quiz-card">
+    <div class="card-body">
+      <h5 class="card-title">Quiz {{ loop.index }}</h5>
+      <p class="card-text">It contains {{quiz.questions|length}} questions.</p>
+      <div class="buttons">
+        <a href="{{ url_for('viewquiz', id=quiz.id) }}" class="btn btn-info"
+          >View</a
+        >
+        <a
+          href="{{ url_for('startquiz', quiz_id=quiz.id) }}"
+          class="btn btn-success"
+          style="padding: 8px 12px"
+          >Start</a
+        >
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %} {% block style %}
+<style>
+  .chapter-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #007bff; /* Blue for title */
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .chapter-description {
+    font-size: 16px;
+    color: #6c757d; /* Muted grey for description */
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  .quizzes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  .quiz-card {
+    width: 18rem;
+    background-color: #ffffff; /* White card background */
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px; /* Subtle shadow */
+    padding: 15px;
+    text-align: center;
+    border-left: 5px solid #7a288a;
+  }
+  .buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+  }
+  .btn-info {
+    background-color: #17a2b8; /* Teal for View button */
+    color: white;
+  }
+
+  .btn-success {
+    background-color: #28a745; /* Green for Start button */
+    color: white;
+  }
+</style>
+{% endblock %}
