@@ -16,6 +16,30 @@ The application supports **role-based access**, ensuring clear separation of res
 
 ---
 
+## 📐 ER Diagram
+
+The Entity-Relationship (ER) diagram represents the database schema and relationships between users, subjects, chapters, quizzes, questions, and scores.
+
+🔗 **View ER Diagram:**  
+https://app.eraser.io/workspace/wO4Q0Z9X4jXWlCLPqHEU?origin=share
+
+---
+
+## 📄 Project Report
+
+A detailed project report covering:
+- Problem statement
+- System design
+- Database schema
+- Architecture
+- Features
+- Technology stack
+
+🔗 **View Project Report:**  
+https://docs.google.com/document/d/1PP9TopOwgwfTk0KheEPdfjv9l2dA8YrJy4LIRnESSEo/edit
+
+---
+
 ## 🛠️ Tech Stack
 
 ### Backend
@@ -61,26 +85,23 @@ The application supports **role-based access**, ensuring clear separation of res
 - Sensitive credentials managed through environment variables
 
 ---
-
 ## 🧱 Application Architecture
 
+```text
 quiz-master/
-│
-├── app.py
-├── routes.py # Routing and business logic
-├── models.py # SQLAlchemy database models
-├── templates/ # Jinja2 HTML templates
+├── app.py                  # Application entry point
+├── routes.py               # Routing and business logic
+├── models.py               # SQLAlchemy database models
+├── templates/              # Jinja2 HTML templates
 ├── static/
-│ ├── css/
-│ └── js/
+│   ├── css/                # Stylesheets
+│   └── js/                 # JavaScript files
 ├── instance/
-│ └── database.sqlite3
-├── .env
-├── requirements.txt
+│   └── database.sqlite3    # SQLite database
+├── .env                    # Environment variables
+├── requirements.txt        # Python dependencies
 └── README.md
-
-
-
+```
 ---
 
 ## 🗄️ Database Schema
@@ -127,7 +148,7 @@ DATABASE_URI=sqlite:///instance/database.sqlite3
 
 ### 5️⃣ Run the Application
 ```bash
-python app.py
+flask run
 ```
 
 The application will be available at:
